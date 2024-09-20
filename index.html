@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OJT Documentation System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <style>
+        .sidebar {
+            min-height: 100vh;
+        }
+        .content {
+            padding: 20px;
+        }
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none; /* Hide sidebar on mobile by default */
+            }
+            .sidebar.show {
+                display: block; /* Show sidebar when toggled */
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">OJT Documentation System</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar" aria-controls="sidebar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 bg-light sidebar" id="sidebar"> <!-- Sidebar -->
+                <ul class="nav flex-column mt-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" onclick="showContent('dashboard')">
+                            <i class="bi bi-house"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showContent('trackDocuments')">
+                            <i class="bi bi-file-earmark-text"></i> Track Documents
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showContent('userProfile')">
+                            <i class="bi bi-person"></i> User Profile
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="showContent('settings')">
+                            <i class="bi bi-gear"></i> Settings
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-9 content" id="mainContent"> <!-- Centered Content -->
+                <div id="initialContent" class="box">
+                    <h2>Welcome to the OJT Documentation System</h2>
+                    <p>This is the main content area. Click the options in the sidebar to view different content.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"></script>
+
+    <script>
+        function showContent(section) {
+            const mainContent = document.getElementById('mainContent');
+            mainContent.innerHTML = ''; // Clear existing content
+
+            switch (section) {
+                case 'dashboard':
+                    mainContent.innerHTML = `
+                        <div class="box">
+                            <h2>Dashboard</h2>
+                            <hr>
+                            <div class="card w-50">
+                                <div class="card-body">
+                                    <h5>Total Created Documents</h5>
+                                    <hr>
+                                            <h2 class="text-center">50</h2>
+                                    </div>
+                                </div>
+                        </div>
+                    `;
+                    break;
+                case 'trackDocuments':
+                    mainContent.innerHTML = `
+                        <div class="table-responsive">
+                            <h2>Track Documents</h2>
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Document Name</th>
+                                        <th>Status</th>
+                                        <th>Date Submitted</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Document 1</td>
+                                        <td>Approved</td>
+                                        <td>2024-01-01</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Document 2</td>
+                                        <td>Pending</td>
+                                        <td>2024-02-01</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    `;
+                    break;
+                case 'userProfile':
+                    mainContent.innerHTML = `
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">User Profile</h5>
+                                <p class="card-text">Name: John Doe</p>
+                                <p class="card-text">Email: john@example.com</p>
+                                <p class="card-text">Role: Intern</p>
+                            </div>
+                        </div>
+                    `;
+                    break;
+                case 'settings':
+                    mainContent.innerHTML = `
+                        <div class="box">
+                            <h2>Settings</h2>
+                            <button class="btn btn-danger" onclick="logout()">Logout</button>
+                        </div>
+                    `;
+                    break;
+            }
+        }
+
+        function logout() {
+            alert("Logging out...");
+            // Here you can redirect to your logout page or handle the logout process
+        }
+
+        // Initial content on page load
+        window.onload = function() {
+            showContent('dashboard'); // Show dashboard content initially
+        };
+    </script>
+</body>
+</html>
